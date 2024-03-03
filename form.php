@@ -9,7 +9,7 @@
 
 <body>
     <form action="" method="post">
-        <input type="text" placeholder="nama" name="username" />
+        <input type="text" placeholder="nama" name="nama" />
         <br />
         <input type="email" placeholder="email" name="email" />
         <br />
@@ -17,13 +17,12 @@
         <br />
         <input type="text" placeholder="alamat" name="alamat" />
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" name="submit">Submit</button>
     </form>
-
 </body>
 
 </html>
 
 <?php
 
-require_once("mahasiswa.php");
+require_once("database.php");
