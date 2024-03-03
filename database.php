@@ -7,7 +7,6 @@ class DB extends configDB
     {
         $this->connect();
 
-
         if (isset($_POST['submit'])) {
 
             $name = $_POST['nama'];
@@ -20,7 +19,32 @@ class DB extends configDB
 
                 if ($datas) {
                     echo "<div class='notifSuccess'>Data berhasil ditambahkan!</div>";
-                    // Fetching all data
+
+                    $fetchData = mysqli_query($this->mysqli, "SELECT * from datamahasiswa");
+
+                    if ($fetchData) {
+                        echo "<table border ='1'>";
+                        echo "<tr >
+                            <td>nama</td>
+                            <td>email</td>
+                            <td>alamat</td>
+                            <td>No HP</td>
+                        </tr>
+                        ";
+                        $no = 1;
+                        while ($fetching = mysqli_fetch_array($fetchData)) {
+                            echo "<tr>
+                                <td>" . $fetching["name"] . "</td>
+                                <td>" . $fetching["email"] . "</td>
+                                <td>" . $fetching["alamat"] . "</td>
+                                <td>"  . $fetching["whatsapp"] . "</td>
+                                </tr>
+                                
+                                ";
+                            $no++;
+                        }
+                        echo "</table>";
+                    }
                 }
             } else {
                 echo "<div class='notifFailed'>Data gagal ditambahkan</div>";
