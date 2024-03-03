@@ -7,6 +7,7 @@ class DB extends configDB
     {
         $this->connect();
 
+
         if (isset($_POST['submit'])) {
 
             $name = $_POST['nama'];
@@ -14,12 +15,15 @@ class DB extends configDB
             $whatsapp = $_POST['whatsapp'];
             $alamat = $_POST['alamat'];
 
-            $datas = mysqli_query($this->mysqli, "INSERT into datamahasiswa values('', '$name', '$email', '$alamat', '$whatsapp')");
+            if (!empty($name) && !empty($email) && !empty($alamat) && !empty($whatsapp)) {
+                $datas = mysqli_query($this->mysqli, "INSERT into datamahasiswa values('', '$name', '$email', '$alamat', '$whatsapp')");
 
-            if ($datas) {
-                echo "Data berhasil ditambahkan";
+                if ($datas) {
+                    echo "<div class='notifSuccess'>Data berhasil ditambahkan!</div>";
+                    // Fetching all data
+                }
             } else {
-                echo "Data gagal ditambahkan!";
+                echo "<div class='notifFailed'>Data gagal ditambahkan</div>";
             }
         }
     }
